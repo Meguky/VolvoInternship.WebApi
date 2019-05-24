@@ -30,11 +30,16 @@ namespace VolvoIntershipWebApi.Repositories
                 }
             };
         }
-        public void create(Employee employee)
+        public bool create(Employee employee)
         {
             if (employees.Where(e => e.Id == employee.Id).FirstOrDefault() == null)
             {
                 employees.Add(employee);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -48,25 +53,35 @@ namespace VolvoIntershipWebApi.Repositories
             return employees.Where(e => e.Id == id).FirstOrDefault();
         }
 
-        public void modify(int id, Employee employee)
+        public bool modify(int id, Employee employee)
         {
             if(employee.FirstName != null &&
                employee.FirstName != String.Empty &&
                employee.LastName != null  &&
                employee.LastName != String.Empty &&
-               employees.Where(e => e.Id == id).FirstOrDefault() != null)
+               employees.Where(e => e.Id == id).FirstOrDefault() != null &&
+               employee.Salary > 0
+               )
             {
                 employees.Where(e => e.Id == id).FirstOrDefault().FirstName = employee.FirstName;
                 employees.Where(e => e.Id == id).FirstOrDefault().LastName = employee.LastName;
                 employees.Where(e => e.Id == id).FirstOrDefault().Salary = employee.Salary;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
-        public void delete(int id)
+        public bool delete(int id)
         {
-            if(employees.Where(e => e.Id == id).FirstOrDefault() != null)
+            if(employees.Where(e => e.Id == id).FirstOrDefault() != null && id >= 0)
             {
                 employees.Remove(employees.Where(p => p.Id == id).FirstOrDefault());
+                return true;
+            }else{
+                return false;
             }
         }
     }
