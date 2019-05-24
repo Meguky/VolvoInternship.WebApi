@@ -1,0 +1,24 @@
+# GET https://localhost:44394/api/Employees
+# GET https://localhost:44394/api/Employees/1
+# DELETE https://localhost:44394/api/Employees/1
+
+
+# POST https://localhost:44394/api/Employees
+# Content-Type: application/json
+
+# {
+#    "id": 2,
+#    "firstName": "Melby",
+#    "lastName": "Johnson",
+#    "salary": 1000
+# }
+
+
+# PUT https://localhost:44394/api/Employees/1
+# Content-Type: application/json
+
+# {
+#     "firstName": "Damn",
+#     "lastName": "aaa",
+#     "salary": 100
+# }
